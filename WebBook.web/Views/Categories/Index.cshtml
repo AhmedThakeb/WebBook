@@ -5,10 +5,32 @@
 <div class="card">
     <span class="card__title">Categories</span>
     <p class="card__content">
-        Add Your Category Here.
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning" role="alert">
+                There is no data!
+            </div>
+        }
+        else
+        {
+            <table border="1" class="alert-info">
+                <thead><tr>
+                    <td>Id</td><td>Name</td><td>Create On</td><td>Update On</td><td>Actions</td>
+                    </tr></thead>
+         @foreach (var item in Model)
+            {
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreateOn</td>
+                    <td>@item.UpdateOn</td>
+                    <td> <a class="btn btn-outline-secondary" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id" >Edit</a> </td>
+            }
+            </table>
+        }
     </p>
     <form class="card__form">
+
         <input required="" type="text" placeholder="Your life" />
-        <button asp-controller="categories" asp-action="creat" class="card__button alert-primary "><i class="bi bi-plus"></i>Add</button>
-    </form>
+        <button asp-controller="Categories" asp-action="Create" class="card__button alert-primary ">Add</button>
+    </form>     
 </div>
