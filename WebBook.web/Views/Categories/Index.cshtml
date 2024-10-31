@@ -13,17 +13,18 @@
         }
         else
         {
-            <table border="1" class="alert-info">
+            <table border="2" class="">
                 <thead><tr>
                     <td>Id</td><td>Name</td><td>Create On</td><td>Update On</td><td>Actions</td>
                     </tr></thead>
          @foreach (var item in Model)
             {
-                    <td>@item.Id</td>
+                    <tr><td>@item.Id</td>
                     <td>@item.Name</td>
                     <td>@item.CreateOn</td>
                     <td>@item.UpdateOn</td>
-                    <td> <a class="btn btn-outline-secondary" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id" >Edit</a> </td>
+                        <td> <a class="btn btn-outline-secondary" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id">Edit</a> </td>
+                    </tr>
             }
             </table>
         }

@@ -1,0 +1,10 @@
+﻿@model CategoryFormVM
+@{
+    ViewData["Title"] = "Edit";
+}
+<form class="card__form" asp-controller="categories" asp-action="Edit" method="post">
+
+    <input required="required" type="text" placeholder="Name" asp-for="Name" />
+    <span asp-validation-for="Name"> </span>
+    <button asp-controller="categories" asp-action="create" class="card__button alert-primary " type="submit">Save</button>
+</form>
