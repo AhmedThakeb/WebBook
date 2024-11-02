@@ -44,8 +44,6 @@ namespace WebBook.web.Controllers
         public IActionResult Edit(int Id)
         {
 			var category = db.Categories.Find(Id);
-			var vm = new CategoryFormVM 
-			{
 
                 Id = Id,
 				Name = category.Name	
