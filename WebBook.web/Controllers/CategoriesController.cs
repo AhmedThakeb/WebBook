@@ -44,22 +44,21 @@ namespace WebBook.web.Controllers
         public IActionResult Edit(int Id)
         {
 			var category = db.Categories.Find(Id);
-
-                Id = Id,
-				Name = category.Name	
-			};
-
-            return View();
+			
+            return View(category);
         }
-        [HttpPost]
-        public IActionResult Edit(CategoryFormVM model)
-        {
-            if(!ModelState.IsValid) 
+		[HttpPost]
+		public IActionResult Edit(CategoryFormVM model)
+		{
+			if (!ModelState.IsValid)
 				return View(model);
-			var category = new Category { Name= model.Name };
-			db.Categories.Add(category);
+			var category = db.Categories.Find(model.Id);
+			if (category == null)
+				return NotFound();
+			category.Name = model.Name;
+			category.UpdateOn = DateTime.Now;
 			db.SaveChanges();
-            return View();
-        }
-    }	
+			return RedirectToAction(nameof(Index));
+		}
+	}	
 }
